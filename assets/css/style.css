@@ -13,3 +13,7 @@
 #tableCard {
     margin-bottom: 1em;
 }
+
+thead {
+    text-align: center;
+}
