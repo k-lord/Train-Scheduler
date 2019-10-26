@@ -28,11 +28,11 @@
                     <table class="table">
                         <thead>
                             <tr>
-                            <th scope="col">Train Name</th>
-                            <th scope="col">Destination</th>
-                            <th scope="col">Frequency (min)</th>
-                            <th scope="col">Next Arrival</th>
-                            <th scope="col">Minutes Away</th>
+                            <th class="title">Train Name</th>
+                            <th class="title">Destination</th>
+                            <th class="title">Frequency (min)</th>
+                            <th class="title">Next Arrival</th>
+                            <th class="title">Minutes Away</th>
                             </tr>
                         </thead>
                         <tbody class="train-table">
@@ -49,13 +49,13 @@
                     <div class="card-body">
                         <form>
                             <div class="form-group">
-                                <label for="Train-Name">Train</label>
-                                <input type="text" class="form-control" id="Train-Name" placeholder="">
+                                <label for="train-name">Train</label>
+                                <input type="text" class="form-control" id="train-name" placeholder="">
                             </div>
                             <div class="form-group">
                                     <div class="form-group">
-                                            <label for="Train-Destination">Destination</label>
-                                            <select class="form-control" id="exampleFormControlSelect1">
+                                            <label for="train-destination">Destination</label>
+                                            <select class="form-control" id="train-destination">
                                                 <option selected>Choose...</option>
                                                 <option>Northbound</option>
                                                 <option>Southbound</option>
@@ -63,15 +63,15 @@
                                         </div>
                             </div>
                             <div class="form-group">
-                                <label for="first-train-time">First Train Time (HH:mm)</label>
-                                <input type="time" class="form-control" id="first-train-time" placeholder="">
+                                <label for="first-time">First Train Time (HH:mm)</label>
+                                <input type="time" class="form-control" id="first-time" placeholder="">
                             </div>
                             <div class="form-group">
                                 <label for="train-frequency">Frequency (min)</label>
                                 <input type="number" class="form-control" id="train-frequency" placeholder="">
                             </div>
                             
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary" id="submit">Submit</button>
                         </form>
                             
                     </div>
@@ -84,6 +84,13 @@
 
     <!-- Moment.js -->
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+
+    <!-- core Firebase JS SDK -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-analytics.js"></script>
 
     <!-- app.js -->
     <script type="text/javascript" src="assets/javascript/app.js"></script>
