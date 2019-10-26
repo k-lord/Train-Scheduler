@@ -1,0 +1,15 @@
+.jumbotron {
+    text-align: center;
+}
+
+.card-header {
+    font-weight: bold;
+}
+
+.card-body {
+    justify-content: center;
+}
+
+#tableCard {
+    margin-bottom: 1em;
+}
