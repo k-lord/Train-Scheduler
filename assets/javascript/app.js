@@ -20,6 +20,7 @@ var trainName = "";
 var trainDestination = "";
 var firstTime = "";
 var frequency = "";
+var rowCounter = 1;
 
 //on-click event when current user clicks submit button
 $("#submit").on("click", function(event){
@@ -76,9 +77,14 @@ database.ref().on("child_added", function(snapshot) {
     // Console.logging the last user's JSON
     console.log(snap);
 
-    var newRow = "<tr><td>" + snap.trainName + "</td><td>" + snap.trainDestination + "</td><td>Every " + snap.frequency + " minutes</td><td>" + moment().add(snap.minutesTillTrain, "minutes").format("hh:mm A") + "</td><td>" + snap.minutesTillTrain + " minutes</td></tr>"
+    var nextTrainTime = moment().add(snap.minutesTillTrain, "minutes").format("hh:mm A");
+    
 
+    var newRow = "<tr id='row-"+rowCounter+"'><td>" + snap.trainName + "</td><td>" + snap.trainDestination + "</td><td>Every " + snap.frequency + " minutes</td><td>" + nextTrainTime + "</td><td>" + snap.minutesTillTrain + " minutes</td><td><i id='edit-" + rowCounter + "' class='fa fa-pencil-square-o' aria-hidden='true'></i></td><td><i id='undo-" + rowCounter + "' class='fas fa-undo'></i></td></tr>"
+    
     $(".train-table").append(newRow);
+    console.log(rowCounter);
+    rowCounter++;
 
     // Handle the errors
   }, function(errorObject) {
