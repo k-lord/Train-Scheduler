@@ -34,20 +34,19 @@ $("#submit").on("click", function(event){
 
     // Utilizing Moments.js to calculate values for Next Arrival and Minutes Away
 
-    //First Time pushed back 1 month to guarantee the first time is before current time
-    var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "months");
-    // Current Time
-    var currentTime = moment();
-    // Difference between the start and current times
-    var difference = moment().diff(moment(firstTimeConverted), "minutes");
-    // Time passed since last train
-    var timeRemainder = difference % frequency;
-    // Minutes left Until Train
-    var minutesTillTrain = frequency - timeRemainder;
-    // Next Train
-    var nextTrain = moment().add(minutesTillTrain, "minutes");
-   
-
+        //First Time pushed back 1 month to guarantee the first time is before current time
+        var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "months");
+        // Current Time
+        var currentTime = moment();
+        // Difference between the start and current times
+        var difference = moment().diff(moment(firstTimeConverted), "minutes");
+        // Time passed since last train
+        var timeRemainder = difference % frequency;
+        // Minutes left Until Train
+        var minutesTillTrain = frequency - timeRemainder;
+        // Next Train
+        var nextTrain = moment().add(minutesTillTrain, "minutes");
+    
     //console log the input data submitted by the user
     console.log("user submitted train name: " + trainName);
     console.log("user submitted train destination: " + trainDestination);
@@ -67,6 +66,13 @@ $("#submit").on("click", function(event){
         minutesTillTrain: minutesTillTrain,
         dateAdded: firebase.database.ServerValue.TIMESTAMP
       });
+
+    $("#train-name").val("");
+    $("#train-destination").val("");
+    $("#first-time").val("");
+    $("train-frequency").val("");
+
+
 });
 
 // Firebase watcher .on("child_added")
@@ -79,7 +85,6 @@ database.ref().on("child_added", function(snapshot) {
 
     var nextTrainTime = moment().add(snap.minutesTillTrain, "minutes").format("hh:mm A");
     
-
     var newRow = "<tr id='row-"+rowCounter+"'><td>" + snap.trainName + "</td><td>" + snap.trainDestination + "</td><td>Every " + snap.frequency + " minutes</td><td>" + nextTrainTime + "</td><td>" + snap.minutesTillTrain + " minutes</td><td><i id='edit-" + rowCounter + "' class='fa fa-pencil-square-o' aria-hidden='true'></i></td><td><i id='undo-" + rowCounter + "' class='fas fa-undo'></i></td></tr>"
     
     $(".train-table").append(newRow);
@@ -90,6 +95,12 @@ database.ref().on("child_added", function(snapshot) {
   }, function(errorObject) {
     console.log("Errors handled: " + errorObject.code);
   });
+
+  //on-click event when user clicks on edit button
+  // modal pops up with edit row info with submit form like in 2nd card that updates the firebase database
+
+  //on-click event when user clicks on undo button
+  //the object is removed from firebase database
 
 
 
